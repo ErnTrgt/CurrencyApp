@@ -66,6 +66,7 @@ function Currency() {
                 minHeight: "100vh",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                padding: { xs: 2, sm: 4, md: 6 },
             }}
         >
             <Paper
@@ -75,25 +76,32 @@ function Currency() {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    padding: 4,
+                    padding: { xs: 2, sm: 4, md: 6 },
                     borderRadius: "15px",
                     backdropFilter: "blur(10px)",
                     backgroundColor: "rgba(255, 255, 255, 0.2)",
-                    width: "90%",
+                    width: "100%",
                     maxWidth: "600px",
                 }}
             >
-                <Typography variant='h4' gutterBottom>
+                <Typography
+                    variant='h4'
+                    gutterBottom
+                    sx={{
+                        fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
+                    }}
+                >
                     Currency Exchange Application
                 </Typography>
 
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "row",
+                        flexDirection: { xs: "column", sm: "row" },
                         alignItems: "center",
                         gap: 2,
                         marginBottom: 2,
+                        width: "100%",
                     }}
                 >
                     <TextField
@@ -103,10 +111,16 @@ function Currency() {
                         onChange={(e) => setAmount(e.target.value)}
                         variant='outlined'
                         size='medium'
-                        sx={{ width: "132px" }}
+                        sx={{
+                            width: { xs: "100%", sm: "132px" },
+                        }}
                     />
-                    <FormControl size='medium' sx={{ width: "132px" }}>
-                        {" "}
+                    <FormControl
+                        size='medium'
+                        sx={{
+                            width: { xs: "100%", sm: "132px" },
+                        }}
+                    >
                         <InputLabel>From</InputLabel>
                         <Select
                             value={fromCurrency}
@@ -123,12 +137,34 @@ function Currency() {
                             ))}
                         </Select>
                     </FormControl>
-                    <FaArrowRight
-                        style={{ cursor: "pointer", fontSize: "24px" }}
-                        onClick={swapCurrencies}
-                    />
-                    <FormControl size='medium' sx={{ width: "132px" }}>
-                        {" "}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: { xs: "100%", sm: "auto" }, // Mobilde tam genişlik
+                            transform: {
+                                xs: "rotate(90deg)",
+                                sm: "rotate(0deg)",
+                            }, // Küçük ekranlarda ok simgesini döndürme
+                            transition: "transform 0.3s ease",
+                        }}
+                    >
+                        <FaArrowRight
+                            style={{
+                                cursor: "pointer",
+                                fontSize: "24px",
+                                margin: { xs: "16px 0", sm: "0" },
+                            }}
+                            onClick={swapCurrencies}
+                        />
+                    </Box>
+                    <FormControl
+                        size='medium'
+                        sx={{
+                            width: { xs: "100%", sm: "132px" },
+                        }}
+                    >
                         <InputLabel>To</InputLabel>
                         <Select
                             value={toCurrency}
@@ -151,7 +187,9 @@ function Currency() {
                         variant='outlined'
                         size='medium'
                         InputProps={{ readOnly: true }}
-                        sx={{ width: "132px" }}
+                        sx={{
+                            width: { xs: "100%", sm: "132px" },
+                        }}
                     />
                 </Box>
 
@@ -161,6 +199,7 @@ function Currency() {
                     onClick={exchange}
                     sx={{
                         marginTop: 2,
+                        width: { xs: "100%", sm: "auto" },
                         transition: "all 0.3s ease",
                         "&:hover": {
                             transform: "scale(1.05)",
@@ -174,7 +213,13 @@ function Currency() {
                     Convert
                 </Button>
                 <hr />
-                <Typography variant='h5' gutterBottom>
+                <Typography
+                    variant='h5'
+                    gutterBottom
+                    sx={{
+                        fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
+                    }}
+                >
                     ERNTRGT
                 </Typography>
             </Paper>
